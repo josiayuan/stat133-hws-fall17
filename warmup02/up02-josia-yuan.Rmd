@@ -1,0 +1,62 @@
+---
+title: "warmup 02"
+author: "josiayuan"
+date: "9/8/2017"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#load the objects
+load("nba2017-salary-points.RData")
+##list available objects
+ls()
+#inspection
+typeof(player)
+length(player)
+length(team)
+length(position)
+length(points)
+```
+
+mean (i.e. average)
+standard deviation
+minimum value
+maximum value
+median
+quartiles
+
+```{r}
+##Quantitative Variable - salary
+summary(salary)
+mean(salary)
+sd(salary)
+min(salary)
+max(salary)
+median(salary)
+quantile(salary)
+hist(salary)
+boxplot(salary)
+```
+
+###Comments
+####Statistics summary
+The **mean**, aka **average**, of the nba players' salaries for 2016-2017 is _6187000_ dollars, with **minimum** being _5145_ and **maximun** _30960000_ dollars, which gives a range of 30954855.
+
+####Observations & Analysis
+The value 5145 in comparison to a relatively much larger typical value with units 1000000 appears to be noticable, together with a large standard deviation 6571890, such renders a tentative guess that 5145 may be an outlier, which affect data such as average and standard deviation. 
+
+```{r}
+##Qualitative Variable - position
+is.factor(position)
+position_fac <- factor(position)
+a = table(position_fac)
+prop.table(a)
+barplot(a)
+```
+
+###Comments
+  With the barplot, different positions appear to have faily similar frequency. This may imply every position is valued as important as all the counterparts, because every position playes different role within a basketball team to ensure a comprehensive performance.
