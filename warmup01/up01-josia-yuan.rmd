@@ -1,0 +1,63 @@
+---
+title: "Warmup Assignment"
+author: "Josia Yuan"
+date: "September 1, 2017"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+##Banana Berry Smoothie Recipe
+####Ingredients
+* _1_ cup frozen raspberries
+* _1_ ripe bananas cut into chunks
+* _3/4_ cup orange juice
+* _1/4_ cup vanilla yogurt
+* _1/2_ cup soy milk
+* _1_ teaspoon good honey
+
+####Special Kitchen Tool
+* Blender
+
+####Direction
+1. In a blender, combine **all ingredients**
+2. Blend until smooth, usullly **20-30 seconds** 
+3. Pour into glasses and serve
+
+![](http://images.media-allrecipes.com/userphotos/720x405/3214678.jpg)
+
+>"Excellent fruity drink on a hot day! Was a great drink while pregnant, and can be changed in a variety of ways. Use calcium fortified orange juice if you wish." - Rachel
+
+###[Check other great smoothie recipes!](http://allrecipes.com/recipes/138/drinks/smoothies/?internalSource=recipe%20breadcrumb&referringId=32560&referringContentType=recipe&referringPosition=4&clickId=recipe%20breadcrumb%204)
+
+
+
+
+
+##Quadratic Equation
+####General Form as in Wikipedia
+> "In algebra, a **quadratic equation** is any equation having the form\
+> _**ax^2+bx+c=0**_\
+where x represents an unknown, and a, b, and c represent known numbers such that a is not equal to 0."
+
+####Quadratic Equation
+> In elementary algebra, the **quadratic formula** is the solution of the quadratic equation.\
+> _**x1 = (-b + sqrt(b^2 - 4ac))/2a**_\
+> _**x2 = (-b - sqrt(b^2 - 4ac))/2a**_
+
+####[Deviations of the Formula](https://en.wikipedia.org/wiki/Quadratic_formula#Derivation_of_the_formula)
+
+
+##Table
+```{r}
+library(knitr)
+kable(mtcars[1:5, ], caption = "A knitr kable.")
+```
+
+
+##Comments
+  I have zero previous experience in R, and had no idea what was going on. Things started to make sense and get easier as I became more familiar with underlying concepts and basic Rmarkdown syntax, as well as shortcuts. 
+
+
