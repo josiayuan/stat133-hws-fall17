@@ -117,11 +117,17 @@ In this case, b0=`r b0` stands that when value of point is 0, the corresponding 
 - 1000 points?\
 - 2000 points?\
 ```{r}
+#Predicted salary for different scores
 salary_0 <- b0
 salary_100 <- b0 + 100*b1
 salary_500 <- b0 + 500*b1
 salary_1000 <- b0 + 1000*b1
 salary_2000 <- b0 + 2000*b1
+salary_0
+salary_100
+salary_500
+salary_1000
+salary_2000
 ```
 
 ###5_Plotting Regression Line

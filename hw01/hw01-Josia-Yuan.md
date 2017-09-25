@@ -140,12 +140,40 @@ In this case, b0=1.5090766 stands that when value of point is 0, the correspondi
 - 2000 points?
 
 ``` r
+#Predicted salary for different scores
 salary_0 <- b0
 salary_100 <- b0 + 100*b1
 salary_500 <- b0 + 500*b1
 salary_1000 <- b0 + 1000*b1
 salary_2000 <- b0 + 2000*b1
+salary_0
 ```
+
+    ## [1] 1.509077
+
+``` r
+salary_100
+```
+
+    ## [1] 2.364833
+
+``` r
+salary_500
+```
+
+    ## [1] 5.78786
+
+``` r
+salary_1000
+```
+
+    ## [1] 10.06664
+
+``` r
+salary_2000
+```
+
+    ## [1] 18.62421
 
 ### 5\_Plotting Regression Line
 
