@@ -268,34 +268,18 @@ dat[dat$EFF<0,1]
 #compute correlation coefficients between EFF and other variables
 a<-cor(dat$EFF, dat$PTS)
 b<-cor(dat$EFF, dat$REB)
-c<-cor(dat$EFF, dat$AST)
-d<-cor(dat$EFF, dat$STL)
+c<-cor(dat$EFF, dat$STL)
+d<-cor(dat$EFF, dat$AST)
 e<-cor(dat$EFF,dat$BLK)
-f<-cor(dat$EFF,dat$Missed_FG)*(-1)
-g<-cor(dat$EFF,dat$Missed_FT)*(-1)
+f<-cor(dat$EFF,dat$Missed_FT)*(-1)
+g<-cor(dat$EFF,dat$Missed_FG)*(-1)
 h<-cor(dat$EFF,dat$TO)*(-1)
 i<-cor(dat$EFF,dat$GP)
 #Display cc in descending order
 Cor_Coe <- c(a,b,c,d,e,f,g,h,i)
-variables <- c('PTS','REB','AST','STL','BLK','MFG','MFT','TO','GP')
+variables <- c('PTS','REB','STL','AST','BLK','MFT','MFG','TO','GP')
 R <- data.frame(Variable_with_EFF = variables,
            Correlation_Coefficient = Cor_Coe)
-R[order(R$Correlation_Coefficient,decreasing = TRUE),]
-```
-
-|     | Variable\_with\_EFF |  Correlation\_Coefficient|
-|-----|:--------------------|-------------------------:|
-| 1   | PTS                 |                 0.8588644|
-| 2   | REB                 |                 0.7634501|
-| 4   | STL                 |                 0.6957286|
-| 3   | AST                 |                 0.6689232|
-| 5   | BLK                 |                 0.5679571|
-| 9   | GP                  |                 0.4773648|
-| 7   | MFT                 |                -0.7271456|
-| 6   | MFG                 |                -0.7722477|
-| 8   | TO                  |                -0.8003289|
-
-``` r
 arrange(R,desc(Correlation_Coefficient))
 ```
 
@@ -313,7 +297,9 @@ arrange(R,desc(Correlation_Coefficient))
 
 ``` r
 #barchart
-barplot(R$Correlation_Coefficient, main = 'Correlations between Player Stats and EFF', names.arg = variables)
+Cor_Coe1 <- c(a,b,c,d,e,f,g,h)
+variables1<-c('PTS','REB','STL','AST','BLK','MFT','MFG','TO')
+barplot(Cor_Coe1, main = 'Correlations between Player Stats and EFF', names.arg = variables1)
 ```
 
 ![](hw02-Josia-Yuan_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)

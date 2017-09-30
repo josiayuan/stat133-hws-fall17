@@ -82,24 +82,23 @@ dat[dat$EFF<0,1]
 #compute correlation coefficients between EFF and other variables
 a<-cor(dat$EFF, dat$PTS)
 b<-cor(dat$EFF, dat$REB)
-c<-cor(dat$EFF, dat$AST)
-d<-cor(dat$EFF, dat$STL)
+c<-cor(dat$EFF, dat$STL)
+d<-cor(dat$EFF, dat$AST)
 e<-cor(dat$EFF,dat$BLK)
-f<-cor(dat$EFF,dat$Missed_FG)*(-1)
-g<-cor(dat$EFF,dat$Missed_FT)*(-1)
+f<-cor(dat$EFF,dat$Missed_FT)*(-1)
+g<-cor(dat$EFF,dat$Missed_FG)*(-1)
 h<-cor(dat$EFF,dat$TO)*(-1)
 i<-cor(dat$EFF,dat$GP)
 #Display cc in descending order
 Cor_Coe <- c(a,b,c,d,e,f,g,h,i)
-variables <- c('PTS','REB','AST','STL','BLK','MFG','MFT','TO','GP')
+variables <- c('PTS','REB','STL','AST','BLK','MFT','MFG','TO','GP')
 R <- data.frame(Variable_with_EFF = variables,
            Correlation_Coefficient = Cor_Coe)
-R[order(R$Correlation_Coefficient,decreasing = TRUE),]
 arrange(R,desc(Correlation_Coefficient))
-
 #barchart
-barplot(R$Correlation_Coefficient, main = 'Correlations between Player Stats and EFF', names.arg = variables)
-
+Cor_Coe1 <- c(a,b,c,d,e,f,g,h)
+variables1<-c('PTS','REB','STL','AST','BLK','MFT','MFG','TO')
+barplot(Cor_Coe1, main = 'Correlations between Player Stats and EFF', names.arg = variables1)
 ```
 
 ##5)Efficiency and Salary
