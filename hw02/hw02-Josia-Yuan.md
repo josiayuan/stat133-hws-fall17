@@ -299,7 +299,9 @@ arrange(R,desc(Correlation_Coefficient))
 #barchart
 Cor_Coe1 <- c(a,b,c,d,e,f,g,h)
 variables1<-c('PTS','REB','STL','AST','BLK','MFT','MFG','TO')
-barplot(Cor_Coe1, main = 'Correlations between Player Stats and EFF', names.arg = variables1)
+color <- c(1,1,1,1,1,2,2,2)
+barplot(Cor_Coe1, main = 'Correlations between Player Stats and EFF', names.arg = variables1, ylim = c(-1,1),col=color)
+abline(h=0)
 ```
 
 ![](hw02-Josia-Yuan_files/figure-markdown_github-ascii_identifiers/unnamed-chunk-6-1.png)
