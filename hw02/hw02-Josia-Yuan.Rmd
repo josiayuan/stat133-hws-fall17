@@ -1,0 +1,135 @@
+---
+title: "hw02-Josia-Yuan"
+author: "Josia Yuan"
+date: "September 28, 2017"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(printr)
+library(readr)
+library(dplyr)
+```
+
+##2)Importing Data
+
+```{r}
+#importing using read.csv
+cls = c("character","character","factor","character","double")
+t = rep("integer",19)
+cls = c(cls,t)
+dat <- read.csv('../hw02/data/nba2017-player-statistics.csv', stringsAsFactors = FALSE, colClasses = cls)
+str(dat)
+head(dat)
+typeof(dat$Salary)
+class(dat$Position)
+class(dat$Experience)
+```
+
+```{r}
+#imporiting using read_cvs9
+clt = list(col_character(),col_character(),col_character(),col_character(),col_double(), col_integer(), col_integer(),col_integer(),col_integer(), col_integer(), col_integer(),col_integer(),col_integer(), col_integer(), col_integer(),col_integer(),col_integer(), col_integer(), col_integer(),col_integer(),col_integer(), col_integer(), col_integer(),col_integer())
+dat1 <- read_csv('../hw02/data/nba2017-player-statistics.csv', col_types = clt)
+dat1$Position <- as.factor(dat1$Position)
+str(dat1)
+class(dat1$Position)
+typeof(dat$Salary)
+```
+
+##3)Right after importing data
+
+```{r}
+#convert R to 0 in Experience
+typeof(dat$Experience)
+dat$Experience[dat$Experience == "R"] <- 0
+dat$Experience <- as.integer(dat$Experience)
+typeof(dat$Experience)
+```
+
+
+##4)Performance of Players
+
+```{r}
+#Create variables needed for EFF
+dat$Missed_FG <- dat$FGA-dat$FGM
+dat$Missed_FT <- dat$FTA-dat$FTM
+dat$PTS <- (dat$Points2 * 2)+(dat$Points3 * 3)+dat$FTM
+dat$REB <- dat$OREB + dat$DREB
+dat$MPG <- dat$MIN/dat$GP
+head(dat,5)
+```
+
+
+```{r}
+#Calculate EFF
+dat$EFF <- (dat$PTS + dat$REB + dat$AST + dat$STL + dat$BLK - dat$Missed_FG - dat$Missed_FT - dat$TO)/dat$GP
+head(dat,5)
+summary(dat$EFF)
+hist(dat$EFF, main='Histogram of Efficiency(EFF)', xlab='EFF')
+```
+
+
+
+```{r}
+#display info of top-10 players by EFF in decreasing order in data frame
+top_10 <- arrange(dat,desc(dat$EFF))
+head(top_10,10)
+
+#Names of Players with negative EFF
+dat[dat$EFF<0,1]
+
+#compute correlation coefficients between EFF and other variables
+a<-cor(dat$EFF, dat$PTS)
+b<-cor(dat$EFF, dat$REB)
+c<-cor(dat$EFF, dat$AST)
+d<-cor(dat$EFF, dat$STL)
+e<-cor(dat$EFF,dat$BLK)
+f<-cor(dat$EFF,dat$Missed_FG)*(-1)
+g<-cor(dat$EFF,dat$Missed_FT)*(-1)
+h<-cor(dat$EFF,dat$TO)*(-1)
+i<-cor(dat$EFF,dat$GP)
+#Display cc in descending order
+Cor_Coe <- c(a,b,c,d,e,f,g,h,i)
+variables <- c('PTS','REB','AST','STL','BLK','MFG','MFT','TO','GP')
+R <- data.frame(Variable_with_EFF = variables,
+           Correlation_Coefficient = Cor_Coe)
+R[order(R$Correlation_Coefficient,decreasing = TRUE),]
+arrange(R,desc(Correlation_Coefficient))
+
+#barchart
+barplot(R$Correlation_Coefficient, main = 'Correlations between Player Stats and EFF', names.arg = variables)
+
+```
+
+##5)Efficiency and Salary
+
+```{r}
+#scatterplot
+plot(dat$EFF,dat$Salary, main='Scatterplot of Efficiency and Salary',xlab='EFF',ylab='Salary')
+lines(lowess(dat$EFF,dat$Salary))
+text(28,2.5*10^7,'lowess')
+#correlation coefficient
+cor(dat$EFF,dat$Salary)
+```
+
+###Comment:
+With a correlation coefficient **0.655624**,the Efficiency of a player doesn't seem to have that strong a correlation with salary.Yet it can still be seen from the scatterplot that a positive correlation is noticable.
+
+```{r}
+#select players with MPG>=20
+players2<-data.frame(dat[dat$MPG>=20,])
+head(players2)
+#scatterplot between EFF and Salary
+plot(players2$EFF,players2$Salary,main='Scatterplot of EEF and Salary among Players with MPG>= 20',xlab='EFF',ylab='Salary')
+lines(lowess(players2$EFF,players2$Salary))
+text(29,2*10^7,'lowess')
+#correlation coefficient
+cor(players2$EFF,players2$Salary)
+```
+
+###Comments
+With a correlation coefficient **0.5367224**,the Efficiency of "more established" player has an weaker correaltion with salary than that in general. As it can be seen from the scatterplot, points show a tendency of floting around, and the lowess line is less of a stright or soooth one.
+
+##6)Comments and Reflection
+Since I'm more familiar with differet functions and arguments used in manipulating data frames, the assignment this time is not as confusing as the first homework. However, I still find it worrisome that I always have to remember to use different sytax for different functions, even though the functions may have the same outcomes.
