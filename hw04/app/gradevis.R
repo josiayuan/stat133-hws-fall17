@@ -16,7 +16,8 @@ source("../code/functions.R",chdir = TRUE)
 source("../code/clean-data-script.R",chdir = TRUE)
 
 # convert some variables as factors, for barcharts
-raw$Grade <- as.factor(raw$Grade)
+order <- c("A+","A","A-","B+","B","B-","C+","C","C-","D","F")
+raw$Grade <- factor(raw$Grade,levels = order)
 
 # Variable names for histograms
 continuous <- c('HW1','HW2','HW3','HW4','HW5','HW6','HW6','HW7','HW8','HW9',
