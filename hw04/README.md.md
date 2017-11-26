@@ -20,9 +20,11 @@ In summary, this project involves working around three primary aspects:
 ¨C "ggvis"
 ¨C optional: "readr", "dplyr", etc.
 
+
 To run Shiny App:
-```r
+
+```{r}
 library(shiny)
 # Run an app from a subdirectory in the repo
 runGitHub("stat133-hws-fall17", "josiayuan", subdir = "hw04/app")
-```r
+```

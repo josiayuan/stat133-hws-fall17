@@ -12,7 +12,7 @@
 library(testthat)
 
 #source
-source('functions.R')
+source('../code/functions.R',chdir = TRUE)
 
 
 #Unit test for Function remove_missing

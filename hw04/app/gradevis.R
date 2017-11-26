@@ -12,6 +12,8 @@ library(shiny)
 library(ggvis)
 library(dplyr)
 library(ggplot2)
+source("../code/functions.R",chdir = TRUE)
+source("../code/clean-data-script.R",chdir = TRUE)
 
 # convert some variables as factors, for barcharts
 raw$Grade <- as.factor(raw$Grade)

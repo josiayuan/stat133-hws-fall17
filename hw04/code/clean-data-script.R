@@ -12,7 +12,7 @@
 #load packages
 library(readr)
 library(dplyr)
-source("functions.R")
+source("../code/functions.R",chdir = TRUE)
 #read rawscores.csv
 raw<-read.csv('../data/rawdata/rawscores.csv',stringsAsFactors = FALSE)
 head(raw)
